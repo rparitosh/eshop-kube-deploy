@@ -1,0 +1,27 @@
+kind: "Service"
+apiVersion: "v1"
+metadata:
+  name: "mysql-service"
+spec:
+  ports:
+    -
+      name: "mysql-service"
+      protocol: "TCP"
+      port: 3306
+      targetPort: 3306
+      nodePort: 0
+
+---
+kind: "Endpoints"
+apiVersion: "v1"
+metadata:
+  name: "mysql-service"
+subsets:
+  -
+    addresses:
+      -
+        ip: "192.168.68.164"
+    ports:
+      -
+        port: 3306
+        name: "mysql-service"
